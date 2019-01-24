@@ -1,0 +1,29 @@
+{
+  "name": "eos-bot",
+  "version": "1.0.0",
+  "description": "eos bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newbdez33/eos-bot.git"
+  },
+  "keywords": [
+    "eos",
+    "bot"
+  ],
+  "author": "Jacky <newbdez33@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/newbdez33/eos-bot/issues"
+  },
+  "homepage": "https://github.com/newbdez33/eos-bot#readme",
+  "dependencies": {
+    "ansicolor": "^1.1.78",
+    "config": "^3.0.1",
+    "eosjs": "^20.0.0-beta3",
+    "telegraf": "^3.26.0"
+  }
+}
