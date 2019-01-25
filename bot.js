@@ -57,7 +57,7 @@ bot.start((ctx) => ctx.reply('Welcome!'))
 var input_contract = null;
 var input_action = null;
 var input_data = null;
-const example = `/eosio.token transfer '{"from":"oooooooooopq", "to":"noooooooooop", "quantity":"0.0001 EOS", "memo":"test"}'`;
+const example = `/eosio.token transfer '{"from":"##name##", "to":"noooooooooop", "quantity":"0.0001 EOS", "memo":"test"}'`;
 bot.command((ctx) => {
   var msg = ctx.message.text
   console.log(msg);
@@ -73,6 +73,7 @@ bot.command((ctx) => {
     var data = match[3];
 
     try {
+      data = data.replace()
       var json = JSON.parse(data);
     }catch(e) {
       console.log("data json failed:" + data);
@@ -107,8 +108,15 @@ bot.action('Send', (ctx, next) => {
   //return ctx.reply('👍');
 })
 
+function replace_input_data(name) {
+  var data = JSON.stringify(input_data);
+  data = data.replace(/\#\#name\#\#/, name);
+  return JSON.parse(data);
+}
+
 function eos_contract(name, ctx) {
-  console.log(input_data);
+  //console.log(input_data);
+  replaced_data = replace_input_data(name);
   (async () => {
     try {
       const result = await api.transact({
@@ -119,7 +127,7 @@ function eos_contract(name, ctx) {
             actor: name,
             permission: 'active',
           }],
-          data: input_data,
+          data: replaced_data,
         }]
       }, {
         blocksBehind: 3,
